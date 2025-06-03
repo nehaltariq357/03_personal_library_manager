@@ -35,15 +35,26 @@ class Library():
         print(f"{title} was added successfully!")
         pass
     def remove_book(self):
+        delete_book = input("enter the title of the book to remove: ")
+        for book in self.Books:
+            if book["title"].lower() == delete_book.lower():
+                self.Books.remove(book)
+                print(f"{delete_book} removed successfully! ")
+                return # use return to exit the method immediately after successfully removing the book
+        else:
+            print(f"{delete_book} was not in the book list")
         pass
     def search_book(self):
+        print("search by: ")
+        print("1. Title")
+        print("2. Author")
         pass
     def display_book(self):
         if not self.Books:
             print("book not found")
         else:
             for idx, book in enumerate(self.Books,1):
-                print(f"{idx}. {book["title"]} by {book["author"]} ({book["year"]}) - {book["genre"]} - {book["read"]}")
+                print(f"{idx}. {book['title']} by {book['author']} ({book['year']}) - {book['genre']} - {book['read']}")
         pass
     def display_statistics(self):
         pass
@@ -53,5 +64,6 @@ class Library():
 
 b1 = Library()
 b1.add_book()
-
+b1.display_book()
+b1.remove_book()
 b1.display_book()
