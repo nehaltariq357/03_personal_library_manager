@@ -7,22 +7,22 @@ class Book:
         self.genre = genre
         self.read = read
 
-    def __str__(self):
-        read_status = "Read" if self.read else "unread"
-        return f"{self.title} by {self.author} ({self.year}) - {self.genre} - {read_status}"
+    # def __str__(self):
+    #     read_status = "Read" if self.read else "unread"
+    #     return f"{self.title} by {self.author} ({self.year}) - {self.genre} - {read_status}"
     
 
-class Library(Book):
-    Books = []
-    def __init__(self, title, author, year, genre, read):
-        super().__init__(title, author, year, genre, read)
-
+class Library():
+    def __init__(self):
+        self.Books=[]
+        
     def add_book(self):
         title = input("enter title: ")
         author = input("enter author: ")
         year = input("enter publish year: ")
         genre = input("enter genre: ")
-        read = input("have you read book(yes/no): ")
+        read_input = input("have you read book(yes/no): ")
+        read = "Read" if read_input=="yes" else "Unread"
         books = {
             "title":title,
             "author":author,
@@ -32,13 +32,18 @@ class Library(Book):
         }
 
         self.Books.append(books)
-        print(f"{self.title} was added successfully!")
+        print(f"{title} was added successfully!")
         pass
     def remove_book(self):
         pass
     def search_book(self):
         pass
     def display_book(self):
+        if not self.Books:
+            print("book not found")
+        else:
+            for idx, book in enumerate(self.Books,1):
+                print(f"{idx}. {book["title"]} by {book["author"]} ({book["year"]}) - {book["genre"]} - {book["read"]}")
         pass
     def display_statistics(self):
         pass
@@ -46,6 +51,7 @@ class Library(Book):
         pass
 
 
-b1 = Library("python","nehal",2025,"eduation",True)
+b1 = Library()
 b1.add_book()
-print(Library.Books)
+
+b1.display_book()
